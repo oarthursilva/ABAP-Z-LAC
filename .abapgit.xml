@@ -14,9 +14,6 @@
     <item>/.gitlab-ci.yml</item>
     <item>/abaplint.json</item>
     <item>/azure-pipelines.yml</item>
-    <item>/src/*.prog.xml</item>
-    <item>/src/*.intf.xml</item>
-    <item>/src/*.clas.xml</item>
     <item>/Jenkinsfile</item>
    </IGNORE>
   </DATA>
