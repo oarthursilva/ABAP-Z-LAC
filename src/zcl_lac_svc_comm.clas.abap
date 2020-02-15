@@ -33,9 +33,9 @@ CLASS ZCL_LAC_SVC_COMM IMPLEMENTATION.
 
   METHOD zif_lac_svc_comm~request.
 
-    DATA: lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error,
-          lo_http_client           TYPE REF TO if_http_client,
-          lo_oauth2_client         TYPE REF TO if_oauth2_client.
+    DATA: lx_lac_http_communication TYPE REF TO zcx_lac_http_communication,
+          lo_http_client            TYPE REF TO if_http_client,
+          lo_oauth2_client          TYPE REF TO if_oauth2_client.
 
     lo_http_client   = mo_http_client->get_client( ).
     lo_oauth2_client = mo_oauth2_client->get_client( ).
@@ -53,8 +53,8 @@ CLASS ZCL_LAC_SVC_COMM IMPLEMENTATION.
     TRY .
         mo_http_client->send_request( lo_http_client ).
 
-      CATCH zcx_lac_http_client_error INTO lx_lac_http_client_error.
-        et_bapiret = lx_lac_http_client_error->build_bapiret_tab( ).
+      CATCH zcx_lac_http_communication INTO lx_lac_http_communication.
+        et_bapiret = lx_lac_http_communication->build_bapiret_tab( ).
     ENDTRY.
 
   ENDMETHOD.

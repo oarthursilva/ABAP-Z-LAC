@@ -46,9 +46,9 @@ CLASS ZCL_LAC_HTTP_CLIENT_WRAP IMPLEMENTATION.
         OTHERS             = 4 ).
 
     IF sy-subrc <> 0.
-      RAISE EXCEPTION TYPE zcx_lac_create_client_fail
+      RAISE EXCEPTION TYPE zcx_lac_http_client_error
         EXPORTING
-          textid = zcx_lac_create_client_fail=>not_reachable
+          textid = zcx_lac_http_client_error=>not_reachable
           mv_url = iv_url.
     ENDIF.
 
@@ -65,9 +65,9 @@ CLASS ZCL_LAC_HTTP_CLIENT_WRAP IMPLEMENTATION.
         OTHERS                     = 4 ).
 
     IF sy-subrc <> 0.
-      RAISE EXCEPTION TYPE zcx_lac_http_response_fail
+      RAISE EXCEPTION TYPE zcx_lac_http_client_error
         EXPORTING
-          textid = zcx_lac_http_response_fail=>client_not_created.
+          textid = zcx_lac_http_client_error=>receive_communication_failure.
     ENDIF.
 
   ENDMETHOD.

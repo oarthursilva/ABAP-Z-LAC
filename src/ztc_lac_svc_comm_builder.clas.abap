@@ -15,7 +15,7 @@ public section.
   methods BUILD_DATA_NOT_FOUND_FAIL
   for testing
     raising
-      ZCX_LAC_CREATE_CLIENT_FAIL .
+      ZCX_LAC_BUILDER_FAIL .
 protected section.
 private section.
 
@@ -33,24 +33,26 @@ CLASS ZTC_LAC_SVC_COMM_BUILDER IMPLEMENTATION.
 
   METHOD build_data_not_found_fail.
 
-    DATA: lx_lac_create_client_fail TYPE REF TO zcx_lac_create_client_fail,
-          lo_locator_dto            TYPE REF TO zcl_lac_svc_loc_dto.
+    DATA: lx_lac_builder_fail TYPE REF TO zcx_lac_builder_fail,
+          lo_locator_dto      TYPE REF TO zcl_lac_svc_loc_dto.
 
-    CREATE OBJECT lx_lac_create_client_fail.
     CREATE OBJECT lo_locator_dto.
+    CREATE OBJECT lx_lac_builder_fail.
 
 *   configure BUILD
     cl_abap_testdouble=>configure_call( mo_http_builder_double
-      )->raise_exception( lx_lac_create_client_fail ).
+      )->raise_exception( lx_lac_builder_fail ).
 
     mo_http_builder_double->build( lo_locator_dto ).
 
     TRY .
+        CLEAR lx_lac_builder_fail.
 *       @Test
         mo_comm_builder->build( lo_locator_dto ).
         cl_aunit_assert=>fail( ).
 
-      CATCH zcx_lac_builder_fail ##NO_HANDLER.
+      CATCH zcx_lac_builder_fail INTO lx_lac_builder_fail.
+        cl_aunit_assert=>assert_bound( lx_lac_builder_fail ).
     ENDTRY.
 
   ENDMETHOD.

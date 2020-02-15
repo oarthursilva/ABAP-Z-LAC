@@ -8,7 +8,7 @@ interface ZIF_LAC_HTTP_CLIENT
     returning
       value(RV_DATA_RESPONSE) type XSTRING
     raising
-      ZCX_LAC_HTTP_RESPONSE_FAIL .
+      ZCX_LAC_HTTP_COMMUNICATION .
   methods CREATE_REQUEST
     importing
       !IO_HTTP_CLIENT type ref to IF_HTTP_CLIENT
@@ -20,5 +20,5 @@ interface ZIF_LAC_HTTP_CLIENT
     importing
       !IO_HTTP_CLIENT type ref to IF_HTTP_CLIENT
     raising
-      ZCX_LAC_HTTP_CLIENT_ERROR .
+      ZCX_LAC_HTTP_COMMUNICATION .
 endinterface.

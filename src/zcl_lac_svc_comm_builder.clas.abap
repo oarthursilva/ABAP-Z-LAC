@@ -41,8 +41,8 @@ CLASS ZCL_LAC_SVC_COMM_BUILDER IMPLEMENTATION.
 
   METHOD zif_lac_svc_comm_builder~build.
 
-    DATA: lo_oauth2_client TYPE REF TO zif_lac_oauth2_client,
-          lo_http_client   TYPE REF TO zif_lac_http_client.
+    DATA: lo_oauth2_client          TYPE REF TO zif_lac_oauth2_client,
+          lo_http_client            TYPE REF TO zif_lac_http_client.
 
     lo_oauth2_client = mo_oauth2_builder->build( io_locator_dto ).
 

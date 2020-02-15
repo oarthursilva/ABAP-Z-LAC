@@ -11,6 +11,8 @@ public section.
 
   methods GETTER_SETTER_OK
   for testing .
+  methods INITIALIZE_FAIL
+  for testing .
 
   methods ZIF_LAC_REPORT~FINALIZE
     redefinition .
@@ -20,13 +22,28 @@ protected section.
 private section.
 
   data MO_REPORT type ref to ZCA_LAC_REPORT .
+  data MV_FAIL type ABAP_BOOL value ABAP_FALSE ##NO_TEXT.
 
+  methods FINALIZE_FAIL .
   methods SETUP .
 ENDCLASS.
 
 
 
 CLASS ZTC_LAC_REPORT IMPLEMENTATION.
+
+
+  METHOD finalize_fail.
+
+    mv_fail = abap_true.
+
+    TRY .
+        finalize( ).
+      CATCH zcx_lac INTO DATA(lx_lac).
+        lx_lac->raise_message( ).
+    ENDTRY.
+
+  ENDMETHOD.
 
 
   METHOD getter_setter_ok.
@@ -39,6 +56,19 @@ CLASS ZTC_LAC_REPORT IMPLEMENTATION.
   ENDMETHOD.
 
 
+  METHOD initialize_fail.
+
+    mv_fail = abap_true.
+
+    TRY .
+        initialize( ).
+      CATCH zcx_lac INTO DATA(lx_lac).
+        lx_lac->raise_message( ).
+    ENDTRY.
+
+  ENDMETHOD.
+
+
   METHOD setup.
 
     CREATE OBJECT mo_report TYPE ztd_lac_report.
@@ -46,10 +76,20 @@ CLASS ZTC_LAC_REPORT IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD zif_lac_report~finalize ##NEEDED.
+  METHOD zif_lac_report~finalize.
+
+    IF mv_fail = abap_true.
+      RAISE EXCEPTION TYPE zcx_lac.
+    ENDIF.
+
   ENDMETHOD.
 
 
-  METHOD zif_lac_report~initialize ##NEEDED.
+  METHOD zif_lac_report~initialize.
+
+    IF mv_fail = abap_true.
+      RAISE EXCEPTION TYPE zcx_lac.
+    ENDIF.
+
   ENDMETHOD.
 ENDCLASS.

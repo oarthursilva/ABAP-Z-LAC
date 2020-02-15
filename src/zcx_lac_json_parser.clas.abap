@@ -1,6 +1,6 @@
 class ZCX_LAC_JSON_PARSER definition
   public
-  inheriting from ZCX_SHOP_DC
+  inheriting from ZCX_LAC_DC
   final
   create public .
 
@@ -19,7 +19,8 @@ public section.
   methods CONSTRUCTOR
     importing
       !TEXTID like IF_T100_MESSAGE=>T100KEY optional
-      !PREVIOUS like PREVIOUS optional .
+      !PREVIOUS like PREVIOUS optional
+      !SC_MSGTY_ERROR type SYMSGTY default 'E' .
 protected section.
 private section.
 ENDCLASS.
@@ -33,6 +34,7 @@ CLASS ZCX_LAC_JSON_PARSER IMPLEMENTATION.
 CALL METHOD SUPER->CONSTRUCTOR
 EXPORTING
 PREVIOUS = PREVIOUS
+SC_MSGTY_ERROR = SC_MSGTY_ERROR
 .
 clear me->textid.
 if textid is initial.

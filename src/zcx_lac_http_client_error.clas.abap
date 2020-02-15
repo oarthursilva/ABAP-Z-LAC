@@ -32,6 +32,15 @@ public section.
       attr3 type scx_attrname value '',
       attr4 type scx_attrname value '',
     end of HTTP_INVALIDATE_STATE .
+  constants:
+    begin of NOT_REACHABLE,
+      msgid type symsgid value 'ZLAC',
+      msgno type symsgno value '008',
+      attr1 type scx_attrname value 'MV_URL',
+      attr2 type scx_attrname value '',
+      attr3 type scx_attrname value '',
+      attr4 type scx_attrname value '',
+    end of NOT_REACHABLE .
   data MV_URL type STRING .
 
   methods CONSTRUCTOR
