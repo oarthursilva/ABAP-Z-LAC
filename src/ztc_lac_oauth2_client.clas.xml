@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZTC_LAC_OAUTH2_CLIENT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Unit Test: LAC OAuth2 Client</DESCRIPT>
+    <CATEGORY>05</CATEGORY>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+    <DURATION_TYPE>12</DURATION_TYPE>
+    <RISK_LEVEL>11</RISK_LEVEL>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_OAUTH2_CLIENT</CLSNAME>
+     <CMPNAME>MO_OAUTH2_CLIENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>LAC OAuth2 Client</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_OAUTH2_CLIENT</CLSNAME>
+     <CMPNAME>MO_OAUTH2_CLIENT_WRAP_DOUBLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Test Double: LAC OAuth2 Client Wrap</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_OAUTH2_CLIENT</CLSNAME>
+     <CMPNAME>MO_OAUTH2_DOUBLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Test Double: OAuth 2.0 Client</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

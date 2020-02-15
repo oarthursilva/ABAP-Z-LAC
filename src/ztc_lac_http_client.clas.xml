@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZTC_LAC_HTTP_CLIENT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Unit Test LAC HTTP Client</DESCRIPT>
+    <CATEGORY>05</CATEGORY>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+    <DURATION_TYPE>12</DURATION_TYPE>
+    <RISK_LEVEL>11</RISK_LEVEL>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_HTTP_CLIENT</CLSNAME>
+     <CMPNAME>MO_HTTP_CLIENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>LAC HTTP Client</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_HTTP_CLIENT</CLSNAME>
+     <CMPNAME>MO_HTTP_CLIENT_DOUBLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Test Double: HTTP Client Abstraction</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_HTTP_CLIENT</CLSNAME>
+     <CMPNAME>MO_HTTP_CLIENT_WRAP_DOUBLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Test Double: LAC HTTP Client Wrap</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZTC_LAC_HTTP_CLIENT</CLSNAME>
+     <CMPNAME>MO_HTTP_RESPONSE_WRAP_DOUBLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Test Double: LAC HTTP Response Wrap</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

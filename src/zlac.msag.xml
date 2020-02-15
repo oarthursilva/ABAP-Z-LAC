@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZLAC</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>GUI Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>An error has occurred while creating object &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>An error has occurred while modifying object &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Amount &amp;1 has an unconverted format</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>&amp; is invalid. Please specify a valid internal date in format &apos;YYYYMMDD&apos;.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Date &amp; is invalid. Specify a date in format &apos;DD.MM.YYYY&apos;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>The obligatory parameter &amp; is missing in the request.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>The input data has an unsupported media type</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Invalid source</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>HTTP Client not reachable: &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Communication failure while sending data</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Communication failure while receiving data</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Cannot close connection due to HTTP invalid state</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Service type &amp;1 is not available</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>Fail to convert file into binary</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>Not able to reach the authentication layer</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>Cannot build &amp;</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>Missing implementation of handler &amp;1 type &amp;2</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

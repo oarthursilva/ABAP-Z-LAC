@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_LAC_SVC_CONSTANTS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>LAC Service Constants</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_LAC_SVC_CONSTANTS</CLSNAME>
+     <CMPNAME>SC_GET</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>HTTP Verb GET</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_LAC_SVC_CONSTANTS</CLSNAME>
+     <CMPNAME>SC_POST</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>HTTP Verb POST</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_LAC_SVC_CONSTANTS</CLSNAME>
+     <CMPNAME>SC_SCP_SERVICE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>LAC Service Type</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
