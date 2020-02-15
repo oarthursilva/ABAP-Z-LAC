@@ -17,7 +17,7 @@ public section.
   methods RECEIVE_RESPONSE_FAIL
   for testing
     raising
-      ZCX_LAC_HTTP_RESPONSE_FAIL .
+      ZCX_LAC_HTTP_CLIENT_ERROR .
   methods RECEIVE_RESPONSE_OK
   for testing .
   methods SEND_REQUEST_FAIL
@@ -25,7 +25,9 @@ public section.
     raising
       ZCX_LAC_HTTP_CLIENT_ERROR .
   methods SEND_REQUEST_OK
-  for testing .
+  for testing
+    raising
+      ZCX_LAC_HTTP_CLIENT_ERROR .
   PROTECTED SECTION.
 private section.
 
@@ -98,14 +100,16 @@ CLASS ZTC_LAC_HTTP_CLIENT IMPLEMENTATION.
 
   METHOD receive_response_fail.
 
-    DATA: lo_http_client            TYPE REF TO if_http_client ##NEEDED,
-          lx_lac_http_response_fail TYPE REF TO zcx_lac_http_response_fail.
+    DATA: lo_http_client           TYPE REF TO if_http_client ##NEEDED,
+          lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error.
 
-    CREATE OBJECT lx_lac_http_response_fail.
+    CREATE OBJECT lx_lac_http_client_error
+      EXPORTING
+        textid = zcx_lac_http_client_error=>receive_communication_failure.
 
 *   configure SET_METHOD
     cl_abap_testdouble=>configure_call( mo_http_client_wrap_double
-      )->raise_exception( lx_lac_http_response_fail ).
+      )->raise_exception( lx_lac_http_client_error ).
 
     mo_http_client_wrap_double->receive( lo_http_client ).
 
@@ -114,7 +118,8 @@ CLASS ZTC_LAC_HTTP_CLIENT IMPLEMENTATION.
         mo_http_client->receive_response( lo_http_client ).
         cl_aunit_assert=>fail( ).
 
-      CATCH zcx_lac_http_response_fail ##NO_HANDLER.
+      CATCH zcx_lac_http_communication INTO DATA(lx_lac_http_communication).
+        cl_aunit_assert=>assert_bound( lx_lac_http_communication ).
     ENDTRY.
 
   ENDMETHOD.
@@ -135,7 +140,7 @@ CLASS ZTC_LAC_HTTP_CLIENT IMPLEMENTATION.
     TRY .
 *       @Test
         lv_response_data_act = mo_http_client->receive_response( mo_http_client_double ).
-      CATCH zcx_lac_http_response_fail.
+      CATCH zcx_lac_http_communication.
         cl_aunit_assert=>fail( ).
     ENDTRY.
 
@@ -149,22 +154,26 @@ CLASS ZTC_LAC_HTTP_CLIENT IMPLEMENTATION.
 
   METHOD send_request_fail.
 
-    DATA: lo_http_client           TYPE REF TO if_http_client ##NEEDED,
-          lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error.
+    DATA lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error.
 
-    CREATE OBJECT lx_lac_http_client_error.
+    CREATE OBJECT lx_lac_http_client_error
+      EXPORTING
+        textid = zcx_lac_http_client_error=>send_communication_failure.
 
 *   configure RECEIVE
     cl_abap_testdouble=>configure_call( mo_http_client_wrap_double
       )->raise_exception( lx_lac_http_client_error ).
 
-    mo_http_client_wrap_double->send( lo_http_client ).
+    mo_http_client_wrap_double->send( mo_http_client_double ).
 
     TRY .
-        mo_http_client->send_request( lo_http_client ).
+        CLEAR lx_lac_http_client_error.
+        mo_http_client->send_request( mo_http_client_double ).
+
         cl_aunit_assert=>fail( ).
 
-      CATCH zcx_lac_http_client_error ##NO_HANDLER.
+      CATCH zcx_lac_http_communication INTO DATA(lx_lac_http_communication).
+        cl_aunit_assert=>assert_bound( lx_lac_http_communication ).
     ENDTRY.
 
   ENDMETHOD.
@@ -172,14 +181,19 @@ CLASS ZTC_LAC_HTTP_CLIENT IMPLEMENTATION.
 
   METHOD send_request_ok.
 
-    DATA lo_http_client TYPE REF TO if_http_client ##NEEDED.
+    cl_abap_testdouble=>configure_call( mo_http_client_wrap_double
+      )->and_expect( )->is_called_once( ).
+
+    mo_http_client_wrap_double->send( mo_http_client_double ).
 
     TRY .
-        mo_http_client->send_request( lo_http_client ).
+        mo_http_client->send_request( mo_http_client_double ).
 
-      CATCH zcx_lac_http_client_error.
-        cl_aunit_assert=>fail( ).
+      CATCH zcx_lac_http_communication INTO DATA(lx_lac_http_communication).
+        cl_aunit_assert=>assert_bound( lx_lac_http_communication ).
     ENDTRY.
+
+    cl_abap_testdouble=>verify_expectations( mo_http_client_wrap_double ).
 
   ENDMETHOD.
 

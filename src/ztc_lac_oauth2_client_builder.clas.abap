@@ -33,8 +33,7 @@ CLASS ZTC_LAC_OAUTH2_CLIENT_BUILDER IMPLEMENTATION.
 
   METHOD build_fail.
 
-    DATA: lx_lac_oa2c_create_error TYPE REF TO zcx_lac_oa2c_create_error,
-          lt_bapiret               TYPE bapiret2_tab.
+    DATA lx_lac_oa2c_create_error TYPE REF TO zcx_lac_oa2c_create_error.
 
     CREATE OBJECT lx_lac_oa2c_create_error.
 
@@ -48,13 +47,13 @@ CLASS ZTC_LAC_OAUTH2_CLIENT_BUILDER IMPLEMENTATION.
     ).
 
 *   @Test
-    mo_client_builder->build(
-      EXPORTING
-        io_locator_dto = mo_locator_dto_double
-      IMPORTING
-        et_bapiret = lt_bapiret ).
+    TRY .
+        mo_client_builder->build( mo_locator_dto_double ).
 
-    cl_aunit_assert=>assert_not_initial( lt_bapiret ).
+      CATCH zcx_lac_builder_fail INTO DATA(lx_lac_builder_fail).
+        DATA(lt_bapiret) = lx_lac_builder_fail->build_bapiret_tab( ).
+        cl_aunit_assert=>assert_not_initial( lt_bapiret ).
+    ENDTRY.
 
   ENDMETHOD.
 
@@ -67,7 +66,7 @@ CLASS ZTC_LAC_OAUTH2_CLIENT_BUILDER IMPLEMENTATION.
 *       @Test
         mo_oauth2_client = mo_client_builder->build( mo_locator_dto_double ).
 
-      CATCH zcx_lac_oa2c_create_error.
+      CATCH zcx_lac_builder_fail.
         cl_aunit_assert=>fail( ).
     ENDTRY.
 

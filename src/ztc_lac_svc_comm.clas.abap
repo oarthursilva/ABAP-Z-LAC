@@ -13,19 +13,19 @@ public section.
   methods REQUEST_OK
   for testing
     raising
-      ZCX_LAC_HTTP_CLIENT_ERROR .
+      ZCX_LAC_HTTP_COMMUNICATION .
   methods RESPONSE_OK
   for testing
     raising
-      ZCX_LAC_HTTP_RESPONSE_FAIL .
+      ZCX_LAC_HTTP_COMMUNICATION .
   methods REQUEST_FAIL
   for testing
     raising
-      ZCX_LAC_HTTP_CLIENT_ERROR .
+      ZCX_LAC_HTTP_COMMUNICATION .
   methods RESPONSE_FAIL
   for testing
     raising
-      ZCX_LAC_HTTP_RESPONSE_FAIL .
+      ZCX_LAC_HTTP_COMMUNICATION .
 protected section.
 private section.
 
@@ -56,16 +56,16 @@ CLASS ZTC_LAC_SVC_COMM IMPLEMENTATION.
 
   METHOD request_fail.
 
-    DATA: lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error,
-          lt_bapiret               TYPE bapiret2_tab.
+    DATA: lx_lac_http_communication TYPE REF TO zcx_lac_http_communication,
+          lt_bapiret                TYPE bapiret2_tab.
 
-    CREATE OBJECT lx_lac_http_client_error.
+    CREATE OBJECT lx_lac_http_communication.
 
     CLEAR mo_http_double.
 
 *   configure SEND_REQUEST
     cl_abap_testdouble=>configure_call( mo_http_client_double
-      )->raise_exception( lx_lac_http_client_error ).
+      )->raise_exception( lx_lac_http_communication ).
 
     mo_http_client_double->send_request( mo_http_double ).
 
@@ -79,7 +79,7 @@ CLASS ZTC_LAC_SVC_COMM IMPLEMENTATION.
 
   METHOD request_ok.
 
-    DATA lo_oauth_client TYPE REF TO if_oauth2_client.
+    DATA lo_oauth_client TYPE REF TO if_oauth2_client ##NEEDED.
 
 *   configure GET_HTTP_CLIENT
     cl_abap_testdouble=>configure_call( mo_http_client_double
@@ -89,7 +89,7 @@ CLASS ZTC_LAC_SVC_COMM IMPLEMENTATION.
 
 *   configure GET_OAUTH2_CLIENT
     cl_abap_testdouble=>configure_call( mo_oauth2_client_double
-      )->returning( lo_oauth_client )->times( 1 ).
+      )->returning( lo_oauth_client  )->times( 1 ).
 
     mo_oauth2_client_double->get_client( ).
 
@@ -127,21 +127,23 @@ CLASS ZTC_LAC_SVC_COMM IMPLEMENTATION.
 
   METHOD response_fail.
 
-    DATA lx_lac_http_response_fail TYPE REF TO zcx_lac_http_response_fail.
+    DATA lx_lac_http_communication TYPE REF TO zcx_lac_http_communication.
 
-    CLEAR mo_http_double.
-    CREATE OBJECT lx_lac_http_response_fail.
+    CREATE OBJECT lx_lac_http_communication.
 
     cl_abap_testdouble=>configure_call( mo_http_client_double
-      )->raise_exception( lx_lac_http_response_fail ).
+      )->ignore_all_parameters(
+      )->raise_exception( lx_lac_http_communication ).
 
     mo_http_client_double->receive_response( mo_http_double ).
 
     TRY .
-      mo_service_comm->response( ).
-      cl_aunit_assert=>fail( ).
+        CLEAR lx_lac_http_communication.
+        mo_service_comm->response( ).
+        cl_aunit_assert=>fail( ).
 
-    CATCH zcx_lac_http_response_fail ##NO_HANDLER.
+      CATCH zcx_lac_http_communication INTO lx_lac_http_communication.
+        cl_aunit_assert=>assert_bound( lx_lac_http_communication ).
     ENDTRY.
 
   ENDMETHOD.
@@ -165,7 +167,11 @@ CLASS ZTC_LAC_SVC_COMM IMPLEMENTATION.
     mo_http_client_double->receive_response( mo_http_double ).
 
 *   @Test
-    lv_response = mo_service_comm->response( ).
+    TRY .
+        lv_response = mo_service_comm->response( ).
+      CATCH zcx_lac_http_client_error.
+        cl_aunit_assert=>fail( ).
+    ENDTRY.
 
     cl_aunit_assert=>assert_equals(
       act = lv_response

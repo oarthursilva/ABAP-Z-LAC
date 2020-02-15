@@ -9,18 +9,18 @@ public section.
     begin of CANNOT_BUILD,
       msgid type symsgid value 'ZLAC',
       msgno type symsgno value '015',
-      attr1 type scx_attrname value 'CLASS_NAME',
+      attr1 type scx_attrname value 'MV_SERVICE_TYPE',
       attr2 type scx_attrname value '',
       attr3 type scx_attrname value '',
       attr4 type scx_attrname value '',
     end of CANNOT_BUILD .
-  data MV_CLASS_NAME type STRING .
+  data MV_SERVICE_TYPE type STRING .
 
   methods CONSTRUCTOR
     importing
       !TEXTID like IF_T100_MESSAGE=>T100KEY optional
       !PREVIOUS like PREVIOUS optional
-      !MV_CLASS_NAME type STRING optional .
+      !MV_SERVICE_TYPE type STRING optional .
 protected section.
 private section.
 ENDCLASS.
@@ -35,7 +35,7 @@ CALL METHOD SUPER->CONSTRUCTOR
 EXPORTING
 PREVIOUS = PREVIOUS
 .
-me->MV_CLASS_NAME = MV_CLASS_NAME .
+me->MV_SERVICE_TYPE = MV_SERVICE_TYPE .
 clear me->textid.
 if textid is initial.
   IF_T100_MESSAGE~T100KEY = IF_T100_MESSAGE=>DEFAULT_TEXTID.

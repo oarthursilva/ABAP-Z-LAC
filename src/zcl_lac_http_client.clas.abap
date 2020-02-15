@@ -67,7 +67,17 @@ CLASS ZCL_LAC_HTTP_CLIENT IMPLEMENTATION.
 
   METHOD zif_lac_http_client~receive_response.
 
-    mo_http_wrap->receive( io_http_client ).
+    DATA lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error.
+
+    TRY .
+      mo_http_wrap->receive( io_http_client ).
+
+    CATCH zcx_lac_http_client_error INTO lx_lac_http_client_error.
+      RAISE EXCEPTION TYPE zcx_lac_http_communication
+        EXPORTING
+          textid   = lx_lac_http_client_error->receive_communication_failure
+          previous = lx_lac_http_client_error.
+    ENDTRY.
 
     rv_data_response = mo_http_response_wrap->get_data( io_http_client->response ).
 
@@ -76,7 +86,17 @@ CLASS ZCL_LAC_HTTP_CLIENT IMPLEMENTATION.
 
   METHOD zif_lac_http_client~send_request.
 
-    mo_http_wrap->send( io_http_client ).
+    DATA lx_lac_http_client_error TYPE REF TO zcx_lac_http_client_error.
+
+    TRY .
+      mo_http_wrap->send( io_http_client ).
+
+    CATCH zcx_lac_http_client_error INTO lx_lac_http_client_error.
+      RAISE EXCEPTION TYPE zcx_lac_http_communication
+        EXPORTING
+          textid   = lx_lac_http_client_error->send_communication_failure
+          previous = lx_lac_http_client_error.
+    ENDTRY.
 
   ENDMETHOD.
 ENDCLASS.

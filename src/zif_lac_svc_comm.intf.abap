@@ -11,5 +11,5 @@ interface ZIF_LAC_SVC_COMM
     returning
       value(RV_RESPONSE) type XSTRING
     raising
-      ZCX_LAC_HTTP_RESPONSE_FAIL .
+      ZCX_LAC_HTTP_COMMUNICATION .
 endinterface.

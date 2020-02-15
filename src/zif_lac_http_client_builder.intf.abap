@@ -8,5 +8,5 @@ interface ZIF_LAC_HTTP_CLIENT_BUILDER
     returning
       value(RO_HTTP_CLIENT) type ref to ZIF_LAC_HTTP_CLIENT
     raising
-      ZCX_LAC_CREATE_CLIENT_FAIL .
+      ZCX_LAC_BUILDER_FAIL .
 endinterface.

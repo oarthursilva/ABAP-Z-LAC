@@ -47,10 +47,9 @@ CLASS ZTC_LAC_SVC_LOC_DTO_BUILDER IMPLEMENTATION.
         mo_locator_builder->build( space ).
         cl_aunit_assert=>fail( ).
 
-      CATCH zcx_lac_cloud_data_not_found INTO lx_lac_cloud_data_not_found ##NO_HANDLER.
+      CATCH zcx_lac_cloud_data_not_found INTO lx_lac_cloud_data_not_found.
+        cl_aunit_assert=>assert_bound( lx_lac_cloud_data_not_found ).
     ENDTRY.
-
-    cl_aunit_assert=>assert_bound( lx_lac_cloud_data_not_found ).
 
   ENDMETHOD.
 

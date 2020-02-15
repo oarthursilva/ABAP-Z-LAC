@@ -14,12 +14,12 @@ interface ZIF_LAC_HTTP_CLIENT_WRAP
     returning
       value(RO_CLIENT) type ref to IF_HTTP_CLIENT
     raising
-      ZCX_LAC_CREATE_CLIENT_FAIL .
+      ZCX_LAC_HTTP_CLIENT_ERROR .
   methods RECEIVE
     importing
       !IO_HTTP_CLIENT type ref to IF_HTTP_CLIENT
     raising
-      ZCX_LAC_HTTP_RESPONSE_FAIL .
+      ZCX_LAC_HTTP_CLIENT_ERROR .
   methods SEND
     importing
       !IO_HTTP_CLIENT type ref to IF_HTTP_CLIENT

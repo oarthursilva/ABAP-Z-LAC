@@ -30,7 +30,6 @@ CLASS ZCL_LAC_OAUTH2_CLIENT_WRAP IMPLEMENTATION.
       CATCH cx_oa2c INTO lx_oa2c.
         RAISE EXCEPTION TYPE zcx_lac_oa2c_create_error
           EXPORTING
-            textid   = zcx_lac_oa2c_create_error=>not_reachable
             previous = lx_oa2c.
 
       CATCH cx_oa2c_kernel_too_old INTO lx_oa2c_kernel_too_old.

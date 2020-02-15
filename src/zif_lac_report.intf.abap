@@ -6,6 +6,6 @@ interface ZIF_LAC_REPORT
     raising
       ZCX_LAC .
   methods FINALIZE
-    exceptions
+    raising
       ZCX_LAC .
 endinterface.

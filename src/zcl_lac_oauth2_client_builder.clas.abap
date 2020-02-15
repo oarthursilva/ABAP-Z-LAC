@@ -42,7 +42,9 @@ CLASS ZCL_LAC_OAUTH2_CLIENT_BUILDER IMPLEMENTATION.
           iv_configuration = io_locator_dto->get_oauth2_configuration( )
         ).
       CATCH zcx_lac_oa2c_create_error INTO lx_lac_oa2c_create_error.
-        APPEND lx_lac_oa2c_create_error->build_bapiret( ) TO et_bapiret.
+        RAISE EXCEPTION TYPE zcx_lac_builder_fail
+          EXPORTING
+            previous = lx_lac_oa2c_create_error.
     ENDTRY.
 
     CREATE OBJECT ro_oauth2_client TYPE zcl_lac_oauth2_client

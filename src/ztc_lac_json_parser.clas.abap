@@ -22,13 +22,13 @@ private section.
   data MO_JSON_PARSER type ref to ZIF_LAC_JSON_PARSER .
   data MO_READER_DOUBLE type ref to IF_SXML_READER .
 
-  methods SETUP .
-  methods CONFIGURE_READ_NEXT_NODE
-    importing
-      !IO_SXML_NODE type ref to IF_SXML_NODE .
   methods CONFIGURE_READ_CURRENT_NODE
     importing
       !IO_SXML_NODE type ref to IF_SXML_NODE .
+  methods CONFIGURE_READ_NEXT_NODE
+    importing
+      !IO_SXML_NODE type ref to IF_SXML_NODE .
+  methods SETUP .
 ENDCLASS.
 
 
@@ -103,7 +103,10 @@ CLASS ZTC_LAC_JSON_PARSER IMPLEMENTATION.
     TRY .
         mo_json_parser->parse( space ).
         cl_aunit_assert=>fail( ).
-      CATCH zcx_lac_json_parser ##NO_HANDLER.
+
+      CATCH zcx_lac_json_parser INTO DATA(lx_lac_json_parser).
+        DATA(lt_bapiret) = lx_lac_json_parser->build_bapiret_tab( ).
+        cl_aunit_assert=>assert_not_initial( lt_bapiret ).
     ENDTRY.
 
   ENDMETHOD.
