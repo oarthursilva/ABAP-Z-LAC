@@ -9,13 +9,13 @@ behavior allows a more efficient reusability, by removing any unnecessary bindin
  
 ## Class Diagram
 
-[Package ABAP-Z-LAC-SHOP](../../../ABAP-Z-LAC-SHOP): Contain DDICs, relevant message class and high level objects (exception classes).
+[Package ABAP-Z-LAC-SHOP](../../../ABAP-Z-LAC-SHOP): Contain DDICs, relevant message class and high level objects.
 
 - [Package ABAP-Z-LAC-SHOP-DAO](../../../ABAP-Z-LAC-SHOP-DAO): Contain SHOP/Data Access Objects (DAO) and persistence objects.
 
-- [Package ABAP-Z-LAC-SHOP-MON](../../../ABAP-Z-LAC-SHOP-MON): SHOP Monitor App _(written in ABAP)_ and accessible through SA38 transaction.
+  - [Package ABAP-Z-LAC-SHOP-MON](../../../ABAP-Z-LAC-SHOP-MON): SHOP Monitor App written in ABAP.
 
-- [Package ABAP-Z-LAC-SHOP-DEMO](../../../ABAP-Z-LAC-SHOP-DEMO): Demonstration programs of features developed.
+  - [Package ABAP-Z-LAC-SHOP-DEMO](../../../ABAP-Z-LAC-SHOP-DEMO): Demonstration programs using package features.
 
 ![ABAP-Z-LAC](docs/img/diagram.png)
  
