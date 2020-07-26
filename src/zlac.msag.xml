@@ -110,6 +110,18 @@
      <MSGNR>016</MSGNR>
      <TEXT>Missing implementation of handler &amp;1 type &amp;2</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>&amp; is invalid. Please specify a valid internal time in format &apos;HHMMSS&apos;.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLAC</ARBGB>
+     <MSGNR>018</MSGNR>
+     <TEXT>Time &amp; is invalid. Specify a time in format &apos;HH:MM:SS&apos;</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>
